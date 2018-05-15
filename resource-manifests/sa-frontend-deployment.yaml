@@ -1,23 +1,23 @@
 apiVersion: extensions/v1beta1
-kind: Deployment                                          # 1
+kind: Deployment # A deployment
 metadata:
   name: sa-frontend
 spec:
-  replicas: 2                                             # 2
+  replicas: 2 # Replicas is a property of the deployments Spec that defines how many pods to run.
   minReadySeconds: 15
   strategy:
-    type: RollingUpdate                                   # 3
+    type: RollingUpdate # Specifies the strategy used in this deployment. This one ensures Zero Downtime deployments.
     rollingUpdate: 
-      maxUnavailable: 1                                   # 4
-      maxSurge: 1                                         # 5
-  template:
+      maxUnavailable: 1 # Specifies max unavailable pods allowed when doing a rolling update.
+      maxSurge: 1 # Max amount of pods added to a deployment. (i.e. when moving to a new version, we can have 3 pods at one time)
+  template: # Specifies the pod template that the Deployment will use to create new pods.
     metadata:
       labels:
-        app: sa-frontend                                  # 6
+        app: sa-frontend # The label to use for the pods created by this template.
     spec:
       containers:
-        - image: rinormaloku/sentiment-analysis-frontend
-          imagePullPolicy: Always                         # 7
+        - image: ulminator/sentiment-analysis-frontend:minikube
+          imagePullPolicy: Always # It will Always pull the container images on each redeployment.
           name: sa-frontend
           ports:
             - containerPort: 80

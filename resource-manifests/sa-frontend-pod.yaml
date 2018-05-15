@@ -1,12 +1,12 @@
 apiVersion: v1
-kind: Pod                                            # 1
+kind: Pod # Specifies the kind of kubernetes resource to create.
 metadata:
-  name: sa-frontend
+  name: sa-frontend # Defines the name of the resource
   labels:
-    app: sa-frontend                                 # 2
-spec:                                                # 3
+    app: sa-frontend
+spec:  # Specifies the desired state of the resource. Most important of Pods Spec is the Array of containers
   containers:
-    - image: rinormaloku/sentiment-analysis-frontend # 4
-      name: sa-frontend                              # 5
+    - image: ulminator/sentiment-analysis-frontend # The container image we want to start in this pod.
+      name: sa-frontend # Unique name for a container in a pod
       ports:
-        - containerPort: 80                          # 6
+        - containerPort: 80 # The port at which the container is listening. Just an indicator for the reader (dropping doesn't restrict)

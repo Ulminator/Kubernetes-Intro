@@ -1,6 +1,6 @@
 from textblob import TextBlob
 from flask import Flask, request, jsonify
-
+# import sys
 app = Flask(__name__)
 
 
@@ -8,6 +8,7 @@ app = Flask(__name__)
 def analyse_sentiment():
     sentence = request.get_json()['sentence']
     polarity = TextBlob(sentence).sentences[0].polarity
+    # print(TextBlob(sentence).sentences, file=sys.stderr)
     return jsonify(
         sentence=sentence,
         polarity=polarity

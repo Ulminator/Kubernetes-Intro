@@ -1,12 +1,12 @@
 apiVersion: v1
-kind: Service              # 1
+kind: Service # A service
 metadata:
   name: sa-frontend-lb
 spec:
-  type: LoadBalancer       # 2
+  type: LoadBalancer # Want to balance between the load between the pods.
   ports:
-  - port: 80               # 3
-    protocol: TCP          # 4
-    targetPort: 80         # 5
-  selector:                # 6
-    app: sa-frontend       # 7
+  - port: 80 # Specifices the port in which the service gets requests.
+    protocol: TCP # Defines the communication.
+    targetPort: 80 # The port at which the incomming requests are forwarded.
+  selector: # Object that contains properties for selecting pods.
+    app: sa-frontend # Defines which pods to target (labeled)
